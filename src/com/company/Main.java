@@ -4,7 +4,6 @@ import java.util.Random;
 
 public class Main {
 
-    public static int uronpolGolem = 0;
     public static int bossHealth = 700;
     public static int bossDamage = 50;
     public static String bossDefence = "";
@@ -13,6 +12,7 @@ public class Main {
     public static String[] heroesAttackType = {"Physical",
             "Magical", "Kinetic", "Medic", "Golemepta", "Vezunchik", "Berserk", "Thor"};
     public static int round_number = 0;
+    public static Random random = new Random();
 
     public static void main(String[] args) {
         printStatistics();
@@ -119,14 +119,13 @@ public class Main {
         }
         heroesHealth[4] -= UronBoss * AliveHeroes;
         System.out.println("Golem получает урон = " + UronBoss * AliveHeroes);
-        uronpolGolem -= UronBoss * AliveHeroes;
     }
 
     public static void Vezunchik() {
         Random random = new Random();
         boolean povezlo = random.nextBoolean();
         if (heroesHealth[5] > 0) {
-            if (povezlo) heroesHealth[5] += bossDamage;
+            if (povezlo) heroesHealth[5] += bossDamage - 10;
             System.out.println("Vezunchik Увернулся от удара: " + povezlo);
         }
     }
@@ -142,13 +141,18 @@ public class Main {
         Random random = new Random();
         boolean Oglushil = random.nextBoolean();
         for (int i = 0; i < heroesHealth.length; i++) {
-            if (heroesHealth[7] > 0);
+            if (heroesHealth[7] > 0) ;
             {
-                if (Oglushil) heroesHealth[i] -= bossDamage = 0;
-            }
-            System.out.println("Thor oglushil: " + Oglushil);
-            break;
+                if (Oglushil) {
+                    bossDamage = bossDamage - bossDamage;
 
+                    System.out.println("Thor oglushil: " + Oglushil);
+                    break;
+                } else {
+                    bossDamage = 50;
+                    break;
+                }
+            }
         }
     }
 
