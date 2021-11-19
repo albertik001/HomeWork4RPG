@@ -4,8 +4,8 @@ import java.util.Random;
 
 public class Main {
 
-    public static int bossHealth = 700;
-    public static int bossDamage = 50;
+    public static int bossHealth = 1200;
+    public static int bossDamage = 140;
     public static String bossDefence = "";
     public static int[] heroesHealth = {270, 280, 240, 250, 450, 150, 200, 200};
     public static int[] heroesDamage = {20, 15, 25, 0, 8, 15, 20, 35};
@@ -131,11 +131,16 @@ public class Main {
     }
 
     public static void Berserk() {
-        if (heroesHealth[6] > 0) {
-            heroesHealth[6] -= bossDamage - 70;
-            bossHealth -= heroesDamage[6];
+        for (int i = 0; i < heroesHealth.length; i++) {
+            if (heroesHealth[6] > 0) {
+                heroesHealth[6] -= bossDamage * 1 / 10;
+                heroesDamage[6] = heroesDamage[6] + bossDamage * 1 / 10;
+                System.out.println("Berserk has just blocked and gained bonus damage by blocking Boss' one");
+                break;
+            }
         }
     }
+
 
     public static void Thor() {
         Random random = new Random();
@@ -144,7 +149,7 @@ public class Main {
             if (heroesHealth[7] > 0) ;
             {
                 if (Oglushil) {
-                    bossDamage = bossDamage - bossDamage;
+                    bossDamage = 0;
 
                     System.out.println("Thor oglushil: " + Oglushil);
                     break;
